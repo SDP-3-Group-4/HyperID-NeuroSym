@@ -1,0 +1,30 @@
+# IDE and Cache
+.idea/
+__pycache__/
+*.pyc
+
+# Virtual Environment
+venv/
+env/
+.env
+
+# Datasets and Raw Images
+data/
+mixed-breed/
+MuttMix/
+Mixed_breed_dataset_multiple/
+*.zip
+*.jpg
+*.jpeg
+*.webp
+
+# Trained Models and Checkpoints
+trained_model/
+trained_model_fact_checked/
+*.pt
+*.pkl
+
+# PDF Drafts
+*__Project.pdf
+preview-paper*.pdf
+weather_image*.pdf
