@@ -39,6 +39,20 @@ HyperID solves this by merging the representation power of Deep Learning with th
 
 ---
 
+## 📁 Repository Structure
+
+This repository has been streamlined to contain only the core components of the HyperID pipeline:
+
+- **`train_trait_model_fact_checked_v02.py`**: The primary training script for the Multi-Task Trait Network. It reads the ontology, builds the 6-head neural network, and trains it using early stopping and PyTorch optimizations.
+- **`crosscheck_traits_ensemble.py`**: The main inference pipeline. It takes an input image, runs the visual trait extraction, fuses it with CLIP zero-shot features, and queries the ontology for the final breed prediction.
+- **`hyperid_reasoning.py`**: The symbolic logic engine. It contains the SPARQL queries that interact with the OWL file to map physical traits to breed ancestry.
+- **`train_cnn_baseline.py`**: The standard ResNet-18 baseline script, provided for direct performance comparison against the neuro-symbolic approach.
+- **`hyperid_clip_baseline.py`**: The standalone zero-shot CLIP baseline script.
+- **`breed_trait_ontology_fact_checked_v02.ttl`**: The verified Web Ontology Language (OWL) knowledge base defining the specific physical traits of the 13 training breeds.
+- **`mixed-breed/`**: A curated folder containing specific test images of out-of-distribution mixed-breed dogs (like Goldadors and Gerberian Shepskys) used to evaluate zero-shot reasoning generalization.
+
+---
+
 ## ⚙️ Installation & Setup
 
 1. **Clone the repository:**

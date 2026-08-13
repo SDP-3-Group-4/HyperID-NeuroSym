@@ -1,30 +1,26 @@
-# IDE and Cache
-.idea/
-__pycache__/
-*.pyc
+# Ignore absolutely everything by default
+*
 
-# Virtual Environment
-venv/
-env/
-.env
+# Allow Git to traverse directories
+!*/
 
-# Datasets and Raw Images
-data/
-mixed-breed/
-MuttMix/
-Mixed_breed_dataset_multiple/
-*.zip
-*.jpg
-*.jpeg
-*.webp
+# --- ALLOWED FILES (Whitelist) ---
 
-# Trained Models and Checkpoints
-trained_model/
-trained_model_fact_checked/
-*.pt
-*.pkl
+# Git and Documentation
+!.gitignore
+!README.md
+!LICENSE
+!figure_*.png
 
-# PDF Drafts
-*__Project.pdf
-preview-paper*.pdf
-weather_image*.pdf
+# Core Python Scripts
+!train_trait_model_fact_checked_v02.py
+!train_cnn_baseline.py
+!hyperid_reasoning.py
+!hyperid_clip_baseline.py
+!crosscheck_traits_ensemble.py
+
+# Ontology
+!breed_trait_ontology_fact_checked_v02.ttl
+
+# Specific Folder
+!mixed-breed/**
