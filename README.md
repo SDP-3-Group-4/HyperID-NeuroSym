@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="figure_4_architecture.png" alt="HyperID Logo/Banner" width="600"/>
   
   # HyperID-NeuroSymbolic
 
@@ -112,10 +111,6 @@ python generate_all_paper_plots.py
 
 ## 📈 Methodology Workflow
 
-<div align="center">
-  <img src="figure_1_workflow.png" alt="Neuro-Symbolic Workflow" width="700"/>
-</div>
-
 The architecture processes the image through two parallel branches (Neural Trait Net and Textual CLIP). The ensemble logits are extracted as a discrete Trait Profile (e.g., `FloppyEars`, `MediumSize`), which is then queried against the OWL Ontology using SPARQL to deduce the final breed matching score.
 
 ---
@@ -124,9 +119,22 @@ The architecture processes the image through two parallel branches (Neural Trait
 
 Contributions to expand the breed ontology, improve the multi-task CNN trunk, or add more indigenous stray classes are highly welcome! Please submit a Pull Request or open an Issue for discussion.
 
+## 🏆 Acknowledgements & Credits
+
+This project was developed by the **StrayCare Team (Team Edgeventurers)** as part of our mission to advance animal welfare and veterinary technologies.
+
+We proudly build upon the following open-source frameworks and research:
+
+<p>
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch" />
+  <img src="https://img.shields.io/badge/Meta_AI-0467DF?style=for-the-badge&logo=meta&logoColor=white" alt="Meta AI" />
+  <img src="https://img.shields.io/badge/OpenAI_CLIP-412991?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI CLIP" />
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+</p>
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-*Developed for Animal Welfare and Veterinary applications.*
+*Developed for Animal Welfare and Veterinary applications by Team Edgeventurers.*
