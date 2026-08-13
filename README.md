@@ -128,7 +128,7 @@ We proudly build upon the following open-source frameworks and research:
 <p>
   <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch" />
   <img src="https://img.shields.io/badge/Meta_AI-0467DF?style=for-the-badge&logo=meta&logoColor=white" alt="Meta AI" />
-  <img src="https://img.shields.io/badge/OpenAI_CLIP-412991?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI CLIP" />
+  <img src="https://img.shields.io/badge/OpenAI_CLIP-412991?style=for-the-badge&logo=OpenAI&logoColor=white" alt="OpenAI CLIP" />
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
 </p>
 
