@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: hyperid-ke
+    env: docker
+    rootDir: hf_space
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: false

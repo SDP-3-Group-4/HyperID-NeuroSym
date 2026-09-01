@@ -1,0 +1,12 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+fastapi==0.141.1
+uvicorn[standard]==0.45.0
+python-multipart==0.0.9
+torch==2.4.1
+torchvision==0.19.1
+transformers==4.44.2
+rdflib==7.6.0
+Pillow==11.0.0
+scikit-learn==1.5.2
+numpy<2
+huggingface_hub==0.26.2

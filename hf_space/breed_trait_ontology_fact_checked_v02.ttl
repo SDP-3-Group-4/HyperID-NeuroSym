@@ -1,0 +1,311 @@
+@prefix : <http://straycare.org/ontology/breed#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://straycare.org/ontology/breed> rdf:type owl:Ontology ;
+    owl:versionInfo "0.2-fact-checked" ;
+    rdfs:comment "HyperID-KE breed and phenotype ontology. The six breed-level trait values are canonical prototype labels used for weak supervision and ontology reasoning; they are not intended to claim that every individual of a breed has exactly one phenotype. Breed standards were checked against AKC/FCI references where available." .
+
+#################################################################
+# Core Classes
+#################################################################
+
+:Animal rdf:type owl:Class .
+:Dog rdf:type owl:Class ; rdfs:subClassOf :Animal .
+:Cat rdf:type owl:Class ; rdfs:subClassOf :Animal .
+:Breed rdf:type owl:Class .
+:BreedGroup rdf:type owl:Class .
+:Trait rdf:type owl:Class .
+
+:EarShape rdf:type owl:Class ; rdfs:subClassOf :Trait .
+:CoatType rdf:type owl:Class ; rdfs:subClassOf :Trait .
+:CoatPattern rdf:type owl:Class ; rdfs:subClassOf :Trait .
+:SizeClass rdf:type owl:Class ; rdfs:subClassOf :Trait .
+:SnoutLength rdf:type owl:Class ; rdfs:subClassOf :Trait .
+:TailCarriage rdf:type owl:Class ; rdfs:subClassOf :Trait .
+
+[] rdf:type owl:AllDisjointClasses ;
+   owl:members ( :EarShape :CoatType :CoatPattern :SizeClass :SnoutLength :TailCarriage ) .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:belongsToGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain :Breed ; rdfs:range :BreedGroup .
+
+:hasTrait rdf:type owl:ObjectProperty ;
+    rdfs:domain :Breed ; rdfs:range :Trait .
+
+# Functional properties are retained for compatibility with the current
+# six-head training/reasoning implementation. Each value below is therefore
+# a canonical prototype label, not an exhaustive breed-standard description.
+
+:hasEarShape rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:subPropertyOf :hasTrait ; rdfs:domain :Breed ; rdfs:range :EarShape .
+
+:hasCoatType rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:subPropertyOf :hasTrait ; rdfs:domain :Breed ; rdfs:range :CoatType .
+
+:hasCoatPattern rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:subPropertyOf :hasTrait ; rdfs:domain :Breed ; rdfs:range :CoatPattern .
+
+:hasSizeClass rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:subPropertyOf :hasTrait ; rdfs:domain :Breed ; rdfs:range :SizeClass .
+
+:hasSnoutLength rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:subPropertyOf :hasTrait ; rdfs:domain :Breed ; rdfs:range :SnoutLength .
+
+:hasTailCarriage rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:subPropertyOf :hasTrait ; rdfs:domain :Breed ; rdfs:range :TailCarriage .
+
+:hasTraitDescription rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Breed ; rdfs:range xsd:string .
+
+:originRegion rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Breed ; rdfs:range xsd:string .
+
+#################################################################
+# Trait Individuals
+#################################################################
+
+:FloppyEars rdf:type owl:NamedIndividual , :EarShape .
+:ErectEars rdf:type owl:NamedIndividual , :EarShape .
+:SemiErectEars rdf:type owl:NamedIndividual , :EarShape .
+:ButtonEars rdf:type owl:NamedIndividual , :EarShape .
+
+:ShortCoat rdf:type owl:NamedIndividual , :CoatType .
+:MediumCoat rdf:type owl:NamedIndividual , :CoatType .
+:LongCoat rdf:type owl:NamedIndividual , :CoatType .
+:WireCoat rdf:type owl:NamedIndividual , :CoatType .
+
+:SolidColor rdf:type owl:NamedIndividual , :CoatPattern .
+:Brindle rdf:type owl:NamedIndividual , :CoatPattern .
+:Spotted rdf:type owl:NamedIndividual , :CoatPattern .
+:Tricolor rdf:type owl:NamedIndividual , :CoatPattern .
+:PatchedColor rdf:type owl:NamedIndividual , :CoatPattern .
+
+:ToySize rdf:type owl:NamedIndividual , :SizeClass .
+:SmallSize rdf:type owl:NamedIndividual , :SizeClass .
+:MediumSize rdf:type owl:NamedIndividual , :SizeClass .
+:LargeSize rdf:type owl:NamedIndividual , :SizeClass .
+:GiantSize rdf:type owl:NamedIndividual , :SizeClass .
+
+:ShortSnout rdf:type owl:NamedIndividual , :SnoutLength .
+:MediumSnout rdf:type owl:NamedIndividual , :SnoutLength .
+:LongSnout rdf:type owl:NamedIndividual , :SnoutLength .
+
+:CurledTail rdf:type owl:NamedIndividual , :TailCarriage .
+:StraightTail rdf:type owl:NamedIndividual , :TailCarriage .
+:PlumeTail rdf:type owl:NamedIndividual , :TailCarriage .
+:DockedTail rdf:type owl:NamedIndividual , :TailCarriage .
+
+#################################################################
+# Breed Groups
+#################################################################
+
+:SportingGroup rdf:type owl:NamedIndividual , :BreedGroup .
+:HoundGroup rdf:type owl:NamedIndividual , :BreedGroup .
+:WorkingGroup rdf:type owl:NamedIndividual , :BreedGroup .
+:TerrierGroup rdf:type owl:NamedIndividual , :BreedGroup .
+:ToyGroup rdf:type owl:NamedIndividual , :BreedGroup .
+:SpitzGroup rdf:type owl:NamedIndividual , :BreedGroup .
+:LocalIndigenousGroup rdf:type owl:NamedIndividual , :BreedGroup .
+
+#################################################################
+# Oxford-IIIT Pet breed profiles
+#
+# These are canonical prototype profiles for the current weak-supervision
+# experiment. They should NOT be interpreted as image-level ground truth.
+#################################################################
+
+:Beagle rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Beagle" ;
+    :belongsToGroup :HoundGroup ;
+    :hasEarShape :FloppyEars ;
+    :hasCoatType :ShortCoat ;
+    :hasCoatPattern :Tricolor ;
+    :hasSizeClass :SmallSize ;
+    :hasSnoutLength :MediumSnout ;
+    :hasTailCarriage :StraightTail ;
+    :hasTraitDescription "Medium-sized hound with long low-set ears, short coat, commonly tricolor coloration, medium-length muzzle, and a tail carried upright with a slight curve." .
+
+:Boxer rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Boxer" ;
+    :belongsToGroup :WorkingGroup ;
+    :hasEarShape :ButtonEars ;
+    :hasCoatType :ShortCoat ;
+    :hasCoatPattern :Brindle ;
+    :hasSizeClass :LargeSize ;
+    :hasSnoutLength :ShortSnout ;
+    :hasTailCarriage :StraightTail ;
+    :hasTraitDescription "Large muscular working dog with a short tight coat, natural ears folded forward, short broad muzzle, and fawn or brindle coat commonly accompanied by white markings. Brindle is used here as the canonical prototype pattern for compatibility with the current label set." .
+
+:Chihuahua rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Chihuahua" ;
+    :belongsToGroup :ToyGroup ;
+    :hasEarShape :ErectEars ;
+    :hasCoatType :ShortCoat ;
+    :hasCoatPattern :SolidColor ;
+    :hasSizeClass :ToySize ;
+    :hasSnoutLength :MediumSnout ;
+    :hasTailCarriage :CurledTail ;
+    :hasTraitDescription "Tiny toy dog with erect ears, short smooth coat in many possible colors and patterns, relatively moderate muzzle, and tail commonly carried curled upward." .
+
+:Pug rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Pug" ;
+    :belongsToGroup :ToyGroup ;
+    :hasEarShape :ButtonEars ;
+    :hasCoatType :ShortCoat ;
+    :hasCoatPattern :SolidColor ;
+    :hasSizeClass :ToySize ;
+    :hasSnoutLength :ShortSnout ;
+    :hasTailCarriage :CurledTail ;
+    :hasTraitDescription "Small compact toy dog with folded button ears, short smooth coat, very short flat muzzle, and tightly curled tail." .
+
+:Samoyed rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Samoyed" ;
+    :belongsToGroup :SpitzGroup ;
+    :hasEarShape :ErectEars ;
+    :hasCoatType :LongCoat ;
+    :hasCoatPattern :SolidColor ;
+    :hasSizeClass :LargeSize ;
+    :hasSnoutLength :MediumSnout ;
+    :hasTailCarriage :PlumeTail ;
+    :hasTraitDescription "Substantial spitz-type dog with erect triangular ears, thick long double coat that is typically white, cream, biscuit or white-and-biscuit, medium muzzle, and a profusely haired tail carried over the back or side." .
+
+:ShibaInu rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Shiba Inu" ;
+    :belongsToGroup :SpitzGroup ;
+    :hasEarShape :ErectEars ;
+    :hasCoatType :ShortCoat ;
+    :hasCoatPattern :PatchedColor ;
+    :hasSizeClass :SmallSize ;
+    :hasSnoutLength :MediumSnout ;
+    :hasTailCarriage :CurledTail ;
+    :hasTraitDescription "Small muscular spitz-type dog with erect pointed ears, short double coat, commonly red, sesame or black-and-tan coloration with required cream-white urajiro markings, medium muzzle, and curled tail." .
+
+:GreatPyrenees rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Great Pyrenees" ;
+    :belongsToGroup :WorkingGroup ;
+    :hasEarShape :FloppyEars ;
+    :hasCoatType :LongCoat ;
+    :hasCoatPattern :SolidColor ;
+    :hasSizeClass :GiantSize ;
+    :hasSnoutLength :MediumSnout ;
+    :hasTailCarriage :PlumeTail ;
+    :hasTraitDescription "Very large working dog with small drooping ears, thick long white coat, medium-length muzzle, and long heavily feathered tail." .
+
+:GermanShorthairedPointer rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "German Shorthaired Pointer" ;
+    :belongsToGroup :SportingGroup ;
+    :hasEarShape :FloppyEars ;
+    :hasCoatType :ShortCoat ;
+    :hasCoatPattern :PatchedColor ;
+    :hasSizeClass :LargeSize ;
+    :hasSnoutLength :LongSnout ;
+    :hasTailCarriage :StraightTail ;
+    :hasTraitDescription "Medium-to-large sporting dog with short coat occurring in liver, liver-and-white, black and black-and-white forms including roan/ticked patterns, floppy ears, long muzzle, and a straight tail in the natural phenotype." .
+
+:StaffordshireBullTerrier rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Staffordshire Bull Terrier" ;
+    :belongsToGroup :TerrierGroup ;
+    :hasEarShape :SemiErectEars ;
+    :hasCoatType :ShortCoat ;
+    :hasCoatPattern :Brindle ;
+    :hasSizeClass :MediumSize ;
+    :hasSnoutLength :ShortSnout ;
+    :hasTailCarriage :StraightTail ;
+    :hasTraitDescription "Medium muscular terrier with smooth short coat, rose or half-pricked ears, short broad foreface, straight tapering tail, and many accepted coat colors including brindle and white-marked varieties. Brindle is the canonical prototype pattern used here." .
+
+:YorkshireTerrier rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Yorkshire Terrier" ;
+    :belongsToGroup :ToyGroup ;
+    :hasEarShape :ErectEars ;
+    :hasCoatType :LongCoat ;
+    :hasCoatPattern :PatchedColor ;
+    :hasSizeClass :ToySize ;
+    :hasSnoutLength :MediumSnout ;
+    :hasTailCarriage :StraightTail ;
+    :hasTraitDescription "Toy-sized terrier with small erect V-shaped ears, long silky floor-length coat characteristically blue and tan, moderate muzzle, and a straight tail." .
+
+:Pomeranian rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Pomeranian" ;
+    :belongsToGroup :SpitzGroup ;
+    :hasEarShape :ErectEars ;
+    :hasCoatType :LongCoat ;
+    :hasCoatPattern :SolidColor ;
+    :hasSizeClass :ToySize ;
+    :hasSnoutLength :MediumSnout ;
+    :hasTailCarriage :PlumeTail ;
+    :hasTraitDescription "Tiny spitz-type toy dog with erect ears, abundant long double coat, medium-short fox-like muzzle, and heavily feathered tail carried over the back. The breed permits many colors, patterns and markings; SolidColor is retained only as the canonical prototype within the current five-value pattern vocabulary." .
+
+:BassetHound rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Basset Hound" ;
+    :belongsToGroup :HoundGroup ;
+    :hasEarShape :FloppyEars ;
+    :hasCoatType :ShortCoat ;
+    :hasCoatPattern :Tricolor ;
+    :hasSizeClass :MediumSize ;
+    :hasSnoutLength :LongSnout ;
+    :hasTailCarriage :StraightTail ;
+    :hasTraitDescription "Low, long-bodied hound with very long floppy ears, short smooth coat commonly tricolor, medium-length muzzle, and a long tail carried upright with a slight curve." .
+
+:SaintBernard rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Saint Bernard" ;
+    :belongsToGroup :WorkingGroup ;
+    :hasEarShape :FloppyEars ;
+    :hasCoatType :ShortCoat ;
+    :hasCoatPattern :PatchedColor ;
+    :hasSizeClass :GiantSize ;
+    :hasSnoutLength :MediumSnout ;
+    :hasTailCarriage :StraightTail ;
+    :hasTraitDescription "Giant working dog with drooping ears, dense short or long coat depending on variety, mandatory white with red/brown/orange markings and patches, medium muzzle, and a long heavy tail that hangs down and turns slightly upward in action." .
+
+#################################################################
+# OOD mixed-breed nodes — empirically derived from CLIP+neural
+# ensemble runs on real images. NOT training targets.
+# These nodes extend the ontology without any model retraining.
+#################################################################
+
+:Goldador rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Goldador (Labrador Retriever × Golden Retriever)" ;
+    :belongsToGroup :LocalIndigenousGroup ;
+    :hasEarShape :ErectEars ;
+    :hasCoatType :ShortCoat ;
+    :hasCoatPattern :PatchedColor ;
+    :hasSizeClass :LargeSize ;
+    :hasSnoutLength :MediumSnout ;
+    :hasTailCarriage :StraightTail ;
+    :hasTraitDescription "Labrador-Golden Retriever cross. Empirically-observed profile from CLIP+neural ensemble across test images: erect ears, short coat with patched coloring, large build, medium muzzle, straight tail. Profile is empirical, not based on breed standard assumption." ;
+    rdfs:comment "OOD mixed-breed node. Not a training class. Added via ontology extension to test zero-retraining identification." .
+
+:GerberianShepsky rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Gerberian Shepsky (Siberian Husky × German Shepherd)" ;
+    :belongsToGroup :LocalIndigenousGroup ;
+    :hasEarShape :ErectEars ;
+    :hasCoatType :ShortCoat ;
+    :hasCoatPattern :PatchedColor ;
+    :hasSizeClass :LargeSize ;
+    :hasSnoutLength :MediumSnout ;
+    :hasTailCarriage :PlumeTail ;
+    :hasTraitDescription "Siberian Husky-German Shepherd cross. Empirically-observed profile from CLIP+neural ensemble across test images: erect ears, short coat with patched coloring, large build, medium muzzle, Husky-dominant plume tail. TailCarriage is the sole distinguishing trait from Goldador in this vocabulary." ;
+    rdfs:comment "OOD mixed-breed node. Not a training class. Added via ontology extension to test zero-retraining identification." .
+
+#################################################################
+# Local phenotype placeholder — NOT used as a fixed training label
+#################################################################
+
+:LocalIndigenousDog rdf:type owl:NamedIndividual , :Breed , :Dog ;
+    rdfs:label "Local/Indigenous Street Dog Phenotype" ;
+    :belongsToGroup :LocalIndigenousGroup ;
+    :hasEarShape :SemiErectEars ;
+    :hasCoatType :ShortCoat ;
+    :hasCoatPattern :SolidColor ;
+    :hasSizeClass :MediumSize ;
+    :hasSnoutLength :MediumSnout ;
+    :hasTailCarriage :CurledTail ;
+    :hasTraitDescription "Placeholder local phenotype profile for South Asian street or village dogs; individual dogs vary substantially and this profile must not be treated as ground truth until locally annotated images are available." ;
+    rdfs:comment "Do not use this placeholder as a fixed training target. Replace with an empirically derived local phenotype distribution when local data collection is complete." .
