@@ -120,7 +120,7 @@ def health():
     return {"status":"ok","device":str(DEVICE),"loaded":"clip" in state}
 
 @app.post("/predict")
-async def predict(file: UploadFile = File(...), clip_weight: float = Query(0.65,ge=0,le=1), top_k: int = Query(5,ge=1,le=20)):
+async def predict(file: UploadFile = File(...), clip_weight: float = Query(0.0,ge=0,le=1), top_k: int = Query(5,ge=1,le=20)):
     ensure_loaded()
     try:
         image=Image.open(BytesIO(await file.read())).convert("RGB")
