@@ -76,9 +76,10 @@ def clip_probs(image,clip,proc,text_embeds,logit_scale):
     image_embeds=image_embeds/image_embeds.norm(p=2,dim=-1,keepdim=True)
     res={}
     import math
+    actual_logit_scale = math.exp(logit_scale)
     for t,pm in TRAIT_PROMPTS.items():
         labels=list(pm)
-        logits=logit_scale * image_embeds @ text_embeds[t].T
+        logits=actual_logit_scale * image_embeds @ text_embeds[t].T
         p=torch.softmax(logits[0],dim=0)
         res[t]={labels[i]:float(p[i].cpu()) for i in range(len(labels))}
     return res
