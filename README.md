@@ -1,5 +1,7 @@
 <div align="center">
-  
+  <img src="hypid.svg" alt="HyperID Logo" width="650" />
+  <br><br>
+
   # HyperID-NeuroSymbolic
 
   **Ontology-Grounded Explainable Breed-Ancestry Estimation for Mixed and Indigenous Companion Animals**

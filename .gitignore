@@ -11,6 +11,7 @@
 !README.md
 !LICENSE
 !figure_*.png
+!hypid.svg
 
 # Core Python Scripts
 !train_trait_model_fact_checked_v02.py
