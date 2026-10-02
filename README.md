@@ -2,8 +2,6 @@
   <img src="hypid.svg" alt="HyperID Logo" width="650" />
   <br><br>
 
-  # HyperID (Research Preview)
-
   **Ontology-Grounded Explainable Breed-Ancestry Estimation for Mixed and Indigenous Companion Animals**
 
   [![Paper](https://img.shields.io/badge/IEEE-Paper_Coming_Soon-blue.svg)](https://ieeexplore.ieee.org/)
